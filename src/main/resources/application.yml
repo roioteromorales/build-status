@@ -7,3 +7,6 @@ github:
   url: ${GITHUB_URL}
   organization: ${ORGANIZATION}
   repositoryPrefix: "red-"
+
+server:
+  port: 8080

@@ -1,8 +1,8 @@
 package com.roisoftstudio.buildstatus.presentation.api;
 
+import com.roisoftstudio.buildstatus.data.dto.DroneBuild;
 import com.roisoftstudio.buildstatus.data.dto.DroneRepo;
 import com.roisoftstudio.buildstatus.logic.DroneService;
-import com.roisoftstudio.buildstatus.logic.helpers.ShellResponse;
 import com.roisoftstudio.buildstatus.presentation.api.dto.PromoteBuildRequest;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
@@ -27,11 +27,11 @@ public class BuildsApiController {
   }
 
   @PostMapping("/builds/promote")
-  public ShellResponse promoteBuild(@RequestBody PromoteBuildRequest promoteBuildRequest) {
+  public DroneBuild promoteBuild(@RequestBody PromoteBuildRequest promoteBuildRequest) {
     log.info("called promote with: {}", promoteBuildRequest);
-    ShellResponse shellResponse = droneService
+    DroneBuild droneBuild = droneService
         .promoteBuild(promoteBuildRequest.getRepo(), promoteBuildRequest.getBuildNumber(), promoteBuildRequest.getEnvironment());
-    log.info("promote response: {}", shellResponse);
-    return shellResponse;
+    log.info("promote response: {}", droneBuild);
+    return droneBuild;
   }
 }

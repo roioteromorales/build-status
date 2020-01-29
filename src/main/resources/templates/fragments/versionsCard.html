@@ -8,7 +8,7 @@
            onclick="promote(this.getAttribute('data-repo'), this.getAttribute('data-build'), this.getAttribute('data-env'));"/>
     <hr/>
     <p class="card-text" th:classappend="${version.droneBuildStatus}">
-      <a th:text="'Drone build #' +  ${version.droneBuildNumber} + ' -> ' + ${version.droneBuildStatus}" target="_blank" th:href="${version.droneBuildLink}"></a>
+      <a th:text="${version.droneBuildEvent} + ' build #' +  ${version.droneBuildNumber} + ' -> ' + ${version.droneBuildStatus}" target="_blank" th:href="${version.droneBuildLink}"></a>
     </p>
     <p><a class="card-text" th:text="${version.statusMessage}" target="_blank" th:href="${version.diffLink}"></a></p>
     <p class="card-text" th:text="${version.commitMessage}"></p>

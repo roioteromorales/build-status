@@ -16,6 +16,7 @@ public class VersionsDiff {
   private final String commitMessage;
   private final String author;
   private final String droneBuildLink;
+  private final String droneBuildEvent;
   private final String droneBuildStatus;
   private final Integer droneBuildNumber;
   private final LocalDateTime datetime;

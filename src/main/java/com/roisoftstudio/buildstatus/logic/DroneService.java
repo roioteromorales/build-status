@@ -6,7 +6,6 @@ import com.roisoftstudio.buildstatus.data.DroneRepository;
 import com.roisoftstudio.buildstatus.data.dto.DroneBuild;
 import com.roisoftstudio.buildstatus.data.dto.DroneRepo;
 import com.roisoftstudio.buildstatus.logic.exception.BuildNotFoundException;
-import com.roisoftstudio.buildstatus.logic.helpers.ShellResponse;
 import java.util.Collection;
 import java.util.List;
 import java.util.stream.IntStream;
@@ -19,7 +18,6 @@ import org.springframework.stereotype.Service;
 public class DroneService {
 
   private final DroneRepository droneRepository;
-  private final DroneCliCommander droneCliCommander;
 
   @Value("${drone.token}")
   private String token;
@@ -44,8 +42,8 @@ public class DroneService {
         .collect(toList());
   }
 
-  public ShellResponse promoteBuild(String repo, Integer buildNumber, String environment) {
-    return droneCliCommander.promoteBuild(organization, repo, buildNumber, environment);
+  public DroneBuild promoteBuild(String repo, Integer buildNumber, String environment) {
+    return droneRepository.promoteBuild(organization, repo, buildNumber, environment, token);
   }
 
   public DroneBuild getBuildForCommit(String repository, String commit) {

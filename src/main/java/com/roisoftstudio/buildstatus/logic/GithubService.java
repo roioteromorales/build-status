@@ -68,6 +68,7 @@ public class GithubService {
           .statusMessage(getMessage(githubCompare, compare, base))
           .status(githubCompare.getStatus())
           .droneBuildStatus(droneBuild.getStatus())
+          .droneBuildEvent(droneBuild.getEvent())
           .droneBuildLink(droneUrl + "/" + organization + "/" + repo + "/" + droneBuild.getNumber())
           .droneBuildNumber(droneBuild.getNumber())
           .commitMessage(baseCommit.getCommit().getMessage())

@@ -17,7 +17,7 @@ body {
   border: 1px solid darkgreen;
 }
 
-.fail, .behind, .ahead,.failure {
+.fail, .behind, .ahead, .failure, .killed {
   background-color: red;
   border: 1px solid darkred;
 }
