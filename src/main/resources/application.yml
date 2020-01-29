@@ -1,0 +1,8 @@
+drone:
+  token: ${DRONE_TOKEN}
+  url: ${DRONE_SERVER}
+  organization: ${ORGANIZATION}
+github:
+  token: ${GITHUB_TOKEN}
+  url: ${GITHUB_URL}
+  organization: ${ORGANIZATION}

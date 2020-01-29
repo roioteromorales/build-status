@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+
+
+<div class="row" th:fragment="versionsCardFragment (version)">
+  <div class="col-4">
+    <div class="card myCard shadow">
+      <div class="card-body" th:classappend="${version.dev.status}">
+        <input class="btn btn-primary" type="button" value="Promote to Staging"
+               th:data-repo="${version.repo}" th:data-build="${version.dev.droneBuildNumber}"
+               onclick="promote(this.getAttribute('data-repo'), this.getAttribute('data-build'), 'staging');"/>
+        <hr/>
+        <p><a class="card-text" th:text="'Drone build #' +  ${version.dev.droneBuildNumber}" target="_blank" th:href="${version.dev.droneBuildLink}"></a></p>
+        <p class="card-text" th:text="'Drone build status: ' + ${version.dev.droneBuildStatus}" th:classappend="${version.dev.droneBuildStatus}"></p>
+        <p><a class="card-text" th:text="'Commit ' +  ${version.dev.commitHash}" target="_blank" th:href="${version.dev.commitLink}"></a></p>
+        <p class="card-text" th:text="${version.dev.statusMessage}"></p>
+        <p class="card-text" th:text="${version.dev.commitMessage}"></p>
+        <p class="card-text" th:text="${version.dev.author}"></p>
+        <p class="card-text"><small class="text-muted" th:text="'Commit at: ' +  ${version.dev.datetime}"></small></p>
+      </div>
+    </div>
+  </div>
+  <!--  <div class="col-md-auto">-->
+  <!--    <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>-->
+  <!--  </div>-->
+  <div class="col-4">
+    <div class="card myCard shadow">
+      <div class="card-body" th:classappend="${version.staging.status}">
+        <input class="btn btn-primary" type="button" value="Promote to Staging"
+               th:data-repo="${version.repo}" th:data-build="${version.staging.droneBuildNumber}"
+               onclick="promote(this.getAttribute('data-repo'), this.getAttribute('data-build'), 'prod');"/>
+        <hr/>
+        <p><a class="card-text" th:text="'Drone build #' +  ${version.staging.droneBuildNumber}" target="_blank" th:href="${version.staging.droneBuildLink}"></a></p>
+        <p class="card-text" th:text="'Drone build status: ' + ${version.staging.droneBuildStatus}" th:classappend="${version.staging.droneBuildStatus}"></p>
+        <p><a class="card-text" th:text="'Commit ' +  ${version.staging.commitHash}" target="_blank" th:href="${version.staging.commitLink}"></a></p>
+        <p class="card-text" th:text="${version.staging.statusMessage}"></p>
+        <p class="card-text" th:text="${version.staging.commitMessage}"></p>
+        <p class="card-text" th:text="${version.staging.author}"></p>
+        <p class="card-text"><small class="text-muted" th:text="'Commit at: ' +  ${version.staging.datetime}"></small></p>
+      </div>
+    </div>
+  </div>
+  <!--  <div class="col-md-auto">-->
+  <!--    <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>-->
+  <!--  </div>-->
+  <div class="col-4">
+    <div class="card myCard shadow">
+      <div class="card-body" th:classappend="${version.prod.status}">
+
+        <hr/>
+        <p><a class="card-text" th:text="'Drone build #' +  ${version.prod.droneBuildNumber}" target="_blank" th:href="${version.prod.droneBuildLink}"></a></p>
+        <p class="card-text" th:text="'Drone build status: ' + ${version.prod.droneBuildStatus}" th:classappend="${version.prod.droneBuildStatus}"></p>
+        <p><a class="card-text" th:text="'Commit ' +  ${version.prod.commitHash}" target="_blank" th:href="${version.prod.commitLink}"></a></p>
+        <p class="card-text" th:text="${version.prod.statusMessage}"></p>
+        <p class="card-text" th:text="${version.prod.commitMessage}"></p>
+        <p class="card-text" th:text="${version.prod.author}"></p>
+        <p class="card-text"><small class="text-muted" th:text="'Commit at: ' +  ${version.prod.datetime}"></small></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+</html>

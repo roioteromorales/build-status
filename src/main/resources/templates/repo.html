@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+
+<head>
+  <div th:replace="fragments/head :: headFragment"></div>
+</head>
+<body>
+<div th:replace="fragments/header :: headerFragment"></div>
+
+
+<div th:replace="fragments/versionsCard :: versionsCardFragment(${versions})"></div>
+
+<hr/>
+<hr/>
+<div class="card-deck">
+  <div th:each="droneBuild : ${builds}">
+    <div th:replace="fragments/droneBuildCard :: cardFragment(${droneBuild})"></div>
+  </div>
+</div>
+
+
+<div th:replace="fragments/footer :: footerFragment"></div>
+</body>
+</html>

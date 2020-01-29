@@ -1,0 +1,33 @@
+.avatar {
+  width: 20px;
+  height: 20px;
+}
+
+body {
+  /*background-image: url("/img/background-paper.jpeg");*/
+
+}
+
+.myCard {
+  margin: 10px;
+}
+
+.success, .identical {
+  background-color: lightgreen;
+  border: 1px solid darkgreen;
+}
+
+.fail, .behind {
+  background-color: red;
+  border: 1px solid darkred;
+}
+
+.pending, .running {
+  background-color: orange;
+  border: 1px solid darkorange;
+}
+
+.warning {
+  background-color: lightgoldenrodyellow;
+  border: 1px solid orange;
+}
