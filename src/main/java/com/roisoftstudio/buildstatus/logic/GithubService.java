@@ -5,6 +5,7 @@ import static java.util.stream.Collectors.toList;
 import com.roisoftstudio.buildstatus.data.GithubRepository;
 import com.roisoftstudio.buildstatus.data.dto.DroneBuild;
 import com.roisoftstudio.buildstatus.data.dto.GithubCompare;
+import com.roisoftstudio.buildstatus.data.dto.GithubCompare.BaseCommit;
 import com.roisoftstudio.buildstatus.logic.exception.BuildNotFoundException;
 import com.roisoftstudio.buildstatus.logic.model.VersionsDiff;
 import com.roisoftstudio.buildstatus.presentation.api.dto.Versions;
@@ -58,19 +59,19 @@ public class GithubService {
   private VersionsDiff getVersionsFor(String repo, String from, String to) {
     GithubCompare githubCompare;
     try {
-      githubCompare = githubRepository.compareTags(githubOrganization, repo, from, to, token);
-      DroneBuild droneBuild = droneService.getBuildForCommit(repo, githubCompare.getMerge_base_commit().getSha());
+      githubCompare = githubRepository.compareTags(githubOrganization, repo, to, from, token);
+      BaseCommit baseCommit = githubCompare.getBase_commit();
+      DroneBuild droneBuild = droneService.getBuildForCommit(repo, baseCommit.getSha());
       return VersionsDiff.builder()
-          .statusMessage(getMessage(githubCompare, from, to))
+          .statusMessage(getMessage(githubCompare, to, from))
           .status(githubCompare.getStatus())
           .droneBuildStatus(droneBuild.getStatus())
           .droneBuildLink(droneUrl + "/" + organization + "/" + repo + "/" + droneBuild.getNumber())
           .droneBuildNumber(droneBuild.getNumber())
-          .commitMessage(githubCompare.getMerge_base_commit().getCommit().getMessage())
-          .commitHash(githubCompare.getMerge_base_commit().getSha())
-          .commitLink(githubCompare.getMerge_base_commit().getHtml_url())
-          .author(githubCompare.getMerge_base_commit().getCommit().getAuthor().getName())
-          .datetime(githubCompare.getMerge_base_commit().getCommit().getAuthor().getDate())
+          .commitMessage(baseCommit.getCommit().getMessage())
+          .diffLink(githubCompare.getHtml_url())
+          .author(baseCommit.getCommit().getAuthor().getName())
+          .datetime(baseCommit.getCommit().getAuthor().getDate())
           .build();
     } catch (FeignException e) {
       log.error("Error retrieving tags for the repository {} with message {}", repo, e.getLocalizedMessage());

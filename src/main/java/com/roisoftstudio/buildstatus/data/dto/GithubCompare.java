@@ -9,6 +9,7 @@ import lombok.Value;
 public class GithubCompare {
 
   private final String status;
+  private final String html_url;
   private final Integer ahead_by;
   private final Integer behind_by;
   private final BaseCommit base_commit;

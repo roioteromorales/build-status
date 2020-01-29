@@ -1,6 +1,5 @@
 package com.roisoftstudio.buildstatus.presentation.api;
 
-import com.roisoftstudio.buildstatus.data.dto.DroneBuild;
 import com.roisoftstudio.buildstatus.data.dto.DroneRepo;
 import com.roisoftstudio.buildstatus.logic.DroneService;
 import com.roisoftstudio.buildstatus.logic.helpers.ShellResponse;
@@ -21,11 +20,6 @@ import org.springframework.web.bind.annotation.RestController;
 public class BuildsApiController {
 
   private final DroneService droneService;
-
-  @GetMapping("/builds")
-  public List<DroneBuild> getBuilds() {
-    return droneService.getBuilds("red-balance-management");
-  }
 
   @GetMapping("/repositories")
   public List<DroneRepo> getRepositories() {

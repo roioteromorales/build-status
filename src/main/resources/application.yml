@@ -6,3 +6,4 @@ github:
   token: ${GITHUB_TOKEN}
   url: ${GITHUB_URL}
   organization: ${ORGANIZATION}
+  repositoryPrefix: "red-"

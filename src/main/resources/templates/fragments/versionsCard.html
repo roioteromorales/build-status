@@ -10,9 +10,10 @@
                th:data-repo="${version.repo}" th:data-build="${version.dev.droneBuildNumber}"
                onclick="promote(this.getAttribute('data-repo'), this.getAttribute('data-build'), 'staging');"/>
         <hr/>
-        <p><a class="card-text" th:text="'Drone build #' +  ${version.dev.droneBuildNumber}" target="_blank" th:href="${version.dev.droneBuildLink}"></a></p>
-        <p class="card-text" th:text="'Drone build status: ' + ${version.dev.droneBuildStatus}" th:classappend="${version.dev.droneBuildStatus}"></p>
-        <p><a class="card-text" th:text="'Commit ' +  ${version.dev.commitHash}" target="_blank" th:href="${version.dev.commitLink}"></a></p>
+        <p class="card-text" th:classappend="${version.dev.droneBuildStatus}">
+          <a th:text="'Drone build #' +  ${version.dev.droneBuildNumber} + ' -> ' + ${version.dev.droneBuildStatus}" target="_blank" th:href="${version.dev.droneBuildLink}"></a>
+        </p>
+        <p><a class="card-text" th:text="'Diff'" target="_blank" th:href="${version.dev.diffLink}"></a></p>
         <p class="card-text" th:text="${version.dev.statusMessage}"></p>
         <p class="card-text" th:text="${version.dev.commitMessage}"></p>
         <p class="card-text" th:text="${version.dev.author}"></p>
@@ -26,13 +27,14 @@
   <div class="col-4">
     <div class="card myCard shadow">
       <div class="card-body" th:classappend="${version.staging.status}">
-        <input class="btn btn-primary" type="button" value="Promote to Staging"
+        <input class="btn btn-primary" type="button" value="Promote to Production"
                th:data-repo="${version.repo}" th:data-build="${version.staging.droneBuildNumber}"
                onclick="promote(this.getAttribute('data-repo'), this.getAttribute('data-build'), 'prod');"/>
         <hr/>
-        <p><a class="card-text" th:text="'Drone build #' +  ${version.staging.droneBuildNumber}" target="_blank" th:href="${version.staging.droneBuildLink}"></a></p>
-        <p class="card-text" th:text="'Drone build status: ' + ${version.staging.droneBuildStatus}" th:classappend="${version.staging.droneBuildStatus}"></p>
-        <p><a class="card-text" th:text="'Commit ' +  ${version.staging.commitHash}" target="_blank" th:href="${version.staging.commitLink}"></a></p>
+        <p class="card-text" th:classappend="${version.staging.droneBuildStatus}">
+          <a th:text="'Drone build #' +  ${version.staging.droneBuildNumber} + ' -> ' + ${version.staging.droneBuildStatus}" target="_blank" th:href="${version.staging.droneBuildLink}"></a>
+        </p>
+        <p><a class="card-text" th:text="'Diff'" target="_blank" th:href="${version.staging.diffLink}"></a></p>
         <p class="card-text" th:text="${version.staging.statusMessage}"></p>
         <p class="card-text" th:text="${version.staging.commitMessage}"></p>
         <p class="card-text" th:text="${version.staging.author}"></p>
@@ -46,11 +48,11 @@
   <div class="col-4">
     <div class="card myCard shadow">
       <div class="card-body" th:classappend="${version.prod.status}">
-
         <hr/>
-        <p><a class="card-text" th:text="'Drone build #' +  ${version.prod.droneBuildNumber}" target="_blank" th:href="${version.prod.droneBuildLink}"></a></p>
-        <p class="card-text" th:text="'Drone build status: ' + ${version.prod.droneBuildStatus}" th:classappend="${version.prod.droneBuildStatus}"></p>
-        <p><a class="card-text" th:text="'Commit ' +  ${version.prod.commitHash}" target="_blank" th:href="${version.prod.commitLink}"></a></p>
+        <p class="card-text" th:classappend="${version.prod.droneBuildStatus}">
+          <a th:text="'Drone build #' +  ${version.prod.droneBuildNumber} + ' -> ' + ${version.prod.droneBuildStatus}" target="_blank" th:href="${version.prod.droneBuildLink}"></a>
+        </p>
+        <p><a class="card-text" th:text="'Diff'" target="_blank" th:href="${version.prod.diffLink}"></a></p>
         <p class="card-text" th:text="${version.prod.statusMessage}"></p>
         <p class="card-text" th:text="${version.prod.commitMessage}"></p>
         <p class="card-text" th:text="${version.prod.author}"></p>

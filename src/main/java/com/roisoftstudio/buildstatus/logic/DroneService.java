@@ -25,6 +25,8 @@ public class DroneService {
   private String token;
   @Value("${drone.organization}")
   private String organization;
+  @Value("${github.repositoryPrefix}")
+  private String repoPrefix;
 
   public List<DroneBuild> getBuilds(String repository) {
     return droneRepository.getBuilds(organization, repository, token);
@@ -32,7 +34,7 @@ public class DroneService {
 
   public List<DroneRepo> getRepositories() {
     return droneRepository.getRepos(token).stream()
-        .filter(repository -> repository.getName().contains("red-"))
+        .filter(repository -> repository.getName().contains(repoPrefix))
         .collect(toList());
   }
 
