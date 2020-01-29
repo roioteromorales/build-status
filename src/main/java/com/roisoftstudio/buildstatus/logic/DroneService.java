@@ -18,6 +18,7 @@ import org.springframework.stereotype.Service;
 public class DroneService {
 
   private final DroneRepository droneRepository;
+  private final BlacklistChecker blacklistChecker;
 
   @Value("${drone.token}")
   private String token;
@@ -32,7 +33,8 @@ public class DroneService {
 
   public List<DroneRepo> getRepositories() {
     return droneRepository.getRepos(token).stream()
-        .filter(repository -> repository.getName().contains(repoPrefix))
+        .filter(droneRepo -> droneRepo.getName().contains(repoPrefix))
+        .filter(blacklistChecker::isBlacklisted)
         .collect(toList());
   }
 
