@@ -1,65 +1,21 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 
-
-<div class="row" th:fragment="versionsCardFragment (version)">
-  <div class="col-4">
-    <div class="card myCard shadow">
-      <div class="card-body" th:classappend="${version.dev.status}">
-        <input class="btn btn-primary" type="button" value="Promote to Staging"
-               th:data-repo="${version.repo}" th:data-build="${version.dev.droneBuildNumber}"
-               onclick="promote(this.getAttribute('data-repo'), this.getAttribute('data-build'), 'staging');"/>
-        <hr/>
-        <p class="card-text" th:classappend="${version.dev.droneBuildStatus}">
-          <a th:text="'Drone build #' +  ${version.dev.droneBuildNumber} + ' -> ' + ${version.dev.droneBuildStatus}" target="_blank" th:href="${version.dev.droneBuildLink}"></a>
-        </p>
-        <p><a class="card-text" th:text="'Diff'" target="_blank" th:href="${version.dev.diffLink}"></a></p>
-        <p class="card-text" th:text="${version.dev.statusMessage}"></p>
-        <p class="card-text" th:text="${version.dev.commitMessage}"></p>
-        <p class="card-text" th:text="${version.dev.author}"></p>
-        <p class="card-text"><small class="text-muted" th:text="'Commit at: ' +  ${version.dev.datetime}"></small></p>
-      </div>
-    </div>
+<div class="card myCard shadow" th:fragment="versionsCardFragment (version)">
+  <div class="card-body" th:classappend="${version.status}">
+    <input th:if="${version?.promotingEnvironment}" class="btn btn-primary" type="button" value="Promote"
+           th:data-repo="${version.repo}" th:data-build="${version.droneBuildNumber}" th:data-env="${version.promotingEnvironment}"
+           onclick="promote(this.getAttribute('data-repo'), this.getAttribute('data-build'), this.getAttribute('data-env'));"/>
+    <hr/>
+    <p class="card-text" th:classappend="${version.droneBuildStatus}">
+      <a th:text="'Drone build #' +  ${version.droneBuildNumber} + ' -> ' + ${version.droneBuildStatus}" target="_blank" th:href="${version.droneBuildLink}"></a>
+    </p>
+    <p><a class="card-text" th:text="${version.statusMessage}" target="_blank" th:href="${version.diffLink}"></a></p>
+    <p class="card-text" th:text="${version.commitMessage}"></p>
+    <p class="card-text" th:text="${version.author}"></p>
+    <p class="card-text"><small class="text-muted" th:text="'Commit at: ' +  ${version.datetime}"></small></p>
   </div>
-  <!--  <div class="col-md-auto">-->
-  <!--    <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>-->
-  <!--  </div>-->
-  <div class="col-4">
-    <div class="card myCard shadow">
-      <div class="card-body" th:classappend="${version.staging.status}">
-        <input class="btn btn-primary" type="button" value="Promote to Production"
-               th:data-repo="${version.repo}" th:data-build="${version.staging.droneBuildNumber}"
-               onclick="promote(this.getAttribute('data-repo'), this.getAttribute('data-build'), 'prod');"/>
-        <hr/>
-        <p class="card-text" th:classappend="${version.staging.droneBuildStatus}">
-          <a th:text="'Drone build #' +  ${version.staging.droneBuildNumber} + ' -> ' + ${version.staging.droneBuildStatus}" target="_blank" th:href="${version.staging.droneBuildLink}"></a>
-        </p>
-        <p><a class="card-text" th:text="'Diff'" target="_blank" th:href="${version.staging.diffLink}"></a></p>
-        <p class="card-text" th:text="${version.staging.statusMessage}"></p>
-        <p class="card-text" th:text="${version.staging.commitMessage}"></p>
-        <p class="card-text" th:text="${version.staging.author}"></p>
-        <p class="card-text"><small class="text-muted" th:text="'Commit at: ' +  ${version.staging.datetime}"></small></p>
-      </div>
-    </div>
-  </div>
-  <!--  <div class="col-md-auto">-->
-  <!--    <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>-->
-  <!--  </div>-->
-  <div class="col-4">
-    <div class="card myCard shadow">
-      <div class="card-body" th:classappend="${version.prod.status}">
-        <hr/>
-        <p class="card-text" th:classappend="${version.prod.droneBuildStatus}">
-          <a th:text="'Drone build #' +  ${version.prod.droneBuildNumber} + ' -> ' + ${version.prod.droneBuildStatus}" target="_blank" th:href="${version.prod.droneBuildLink}"></a>
-        </p>
-        <p><a class="card-text" th:text="'Diff'" target="_blank" th:href="${version.prod.diffLink}"></a></p>
-        <p class="card-text" th:text="${version.prod.statusMessage}"></p>
-        <p class="card-text" th:text="${version.prod.commitMessage}"></p>
-        <p class="card-text" th:text="${version.prod.author}"></p>
-        <p class="card-text"><small class="text-muted" th:text="'Commit at: ' +  ${version.prod.datetime}"></small></p>
-      </div>
-    </div>
-  </div>
+</div>
 </div>
 
 </html>

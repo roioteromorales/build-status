@@ -50,20 +50,22 @@ public class GithubService {
   private Versions toVersions(String repo) {
     return Versions.builder()
         .repo(repo)
-        .dev(getVersionsFor(repo, DEV, DEV))
-        .staging(getVersionsFor(repo, DEV, STAGING))
-        .prod(getVersionsFor(repo, STAGING, PROD))
+        .dev(getVersionsFor(repo, DEV, DEV, STAGING))
+        .staging(getVersionsFor(repo, DEV, STAGING, PROD))
+        .prod(getVersionsFor(repo, STAGING, PROD, null))
         .build();
   }
 
-  private VersionsDiff getVersionsFor(String repo, String from, String to) {
+  private VersionsDiff getVersionsFor(String repo, String base, String compare, String promotingEnvironment) {
     GithubCompare githubCompare;
     try {
-      githubCompare = githubRepository.compareTags(githubOrganization, repo, to, from, token);
+      githubCompare = githubRepository.compareTags(githubOrganization, repo, compare, base, token);
       BaseCommit baseCommit = githubCompare.getBase_commit();
       DroneBuild droneBuild = droneService.getBuildForCommit(repo, baseCommit.getSha());
       return VersionsDiff.builder()
-          .statusMessage(getMessage(githubCompare, to, from))
+          .repo(repo)
+          .promotingEnvironment(promotingEnvironment)
+          .statusMessage(getMessage(githubCompare, compare, base))
           .status(githubCompare.getStatus())
           .droneBuildStatus(droneBuild.getStatus())
           .droneBuildLink(droneUrl + "/" + organization + "/" + repo + "/" + droneBuild.getNumber())

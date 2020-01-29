@@ -11,10 +11,19 @@
 <div class="container">
   <div th:each="version : ${versions}">
     <h5 th:text="${version.repo}"></h5>
-    <div th:replace="fragments/versionsCard :: versionsCardFragment(${version})"></div>
+    <div class="row">
+      <div class="col-4">
+        <div th:replace="fragments/versionsCard :: versionsCardFragment(${version.dev})"></div>
+      </div>
+      <div class="col-4">
+        <div th:replace="fragments/versionsCard :: versionsCardFragment(${version.staging})"></div>
+      </div>
+      <div class="col-4">
+        <div th:replace="fragments/versionsCard :: versionsCardFragment(${version.prod})"></div>
+      </div>
+    </div>
     <hr/>
   </div>
-</div>
 </div>
 
 

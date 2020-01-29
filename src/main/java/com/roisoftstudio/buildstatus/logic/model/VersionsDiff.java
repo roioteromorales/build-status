@@ -8,6 +8,8 @@ import lombok.Value;
 @Builder
 public class VersionsDiff {
 
+  private final String repo;
+  private final String promotingEnvironment;
   private final String status;
   private final String statusMessage;
   private final String diffLink;
