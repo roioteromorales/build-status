@@ -1,10 +1,6 @@
-red-scripts
-red-txn-ingestion
-red-vaa-campaign-ingestion
-red-poc-fp-parser
-red-monitor-proxy
-red-metric-export-test
-red-household-sweeper
-red-authorizer
-red-api-proxy
+example-repos
 red-api-external
+red-scripts
+red-metric-export-test
+red-poc-fp-parser
+red-vaa-campaign-ingestion

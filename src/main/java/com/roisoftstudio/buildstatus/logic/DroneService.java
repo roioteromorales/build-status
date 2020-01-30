@@ -57,6 +57,6 @@ public class DroneService {
         .filter(droneBuild -> droneBuild.getAfter().equalsIgnoreCase(commit))
         .filter(droneBuild -> !droneBuild.getBefore().equalsIgnoreCase(commit))
         .findFirst()
-        .orElseThrow(() -> new BuildNotFoundException("Could not find the build for that commit, maybe the branch is too old: " + commit));
+        .orElseThrow(() -> new BuildNotFoundException("Could not find the build for that commit, maybe is too old (only checking last 100 builds): " + commit));
   }
 }

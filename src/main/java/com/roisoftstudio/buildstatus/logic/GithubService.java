@@ -92,7 +92,7 @@ public class GithubService {
   }
 
   private String getMessage(GithubCompare githubCompare, String from, String to) {
-    return from + " is " + githubCompare.getStatus() + " of " + to + " by " + getDiff(githubCompare) + " commits.";
+    return to + " is " + githubCompare.getStatus() + " of " + from + " by " + getDiff(githubCompare) + " commits.";
   }
 
   private Integer getDiff(GithubCompare githubCompare) {
