@@ -9,7 +9,11 @@ http://localhost:8080/env-status
 
 ### Docker
 
-docker run -e DRONE_SERVER=$DRONE_SERVER -e DRONE_TOKEN=$DRONE_TOKEN -e ORGANIZATION=$ORGANIZATION -e GITHUB_TOKEN=$GITHUB_TOKEN roioteromorales/build-status:latest 
+`docker run -e DRONE_SERVER=$DRONE_SERVER -e DRONE_TOKEN=$DRONE_TOKEN -e ORGANIZATION=$ORGANIZATION -e GITHUB_TOKEN=$GITHUB_TOKEN roioteromorales/build-status:latest `
+
+or you can use the docker-compose file:
+
+`docker-compose up`
 
 ### Requirements:
 Add to your environment variables these values:
