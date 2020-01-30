@@ -10,4 +10,3 @@ services:
       DRONE_SERVER:
       ORGANIZATION:
       GITHUB_TOKEN:
-      GITHUB_URL:
