@@ -9,6 +9,15 @@ http://localhost:8080/env-status
 
 ### Docker
 
+#### To build and run your own image:
+
+docker build -t build-status .
+
+`docker run -e DRONE_SERVER=$DRONE_SERVER -e DRONE_TOKEN=$DRONE_TOKEN -e ORGANIZATION=$ORGANIZATION -e GITHUB_TOKEN=$GITHUB_TOKEN build-status`
+
+
+#### To run the existing image from docker hub:
+
 `docker run -e DRONE_SERVER=$DRONE_SERVER -e DRONE_TOKEN=$DRONE_TOKEN -e ORGANIZATION=$ORGANIZATION -e GITHUB_TOKEN=$GITHUB_TOKEN roioteromorales/build-status:latest `
 
 or you can use the docker-compose file:
