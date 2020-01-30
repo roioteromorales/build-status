@@ -1,0 +1,13 @@
+version: '3.7'
+services:
+  build-status:
+    image: build-status
+    restart: always
+    ports:
+      - 8080:8080
+    environment:
+      DRONE_TOKEN:
+      DRONE_SERVER:
+      ORGANIZATION:
+      GITHUB_TOKEN:
+      GITHUB_URL:

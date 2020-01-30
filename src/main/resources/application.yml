@@ -4,9 +4,17 @@ drone:
   organization: ${ORGANIZATION}
 github:
   token: ${GITHUB_TOKEN}
-  url: ${GITHUB_URL}
+  url: https://api.github.com/
   organization: ${ORGANIZATION}
   repositoryPrefix: "red-"
 
 server:
   port: 8080
+
+blacklist: >
+  example-repos,
+  red-api-external,
+  red-scripts,
+  red-metric-export-test,
+  red-poc-fp-parser,
+  red-vaa-campaign-ingestion
