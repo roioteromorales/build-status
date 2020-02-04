@@ -4,28 +4,39 @@
 <head>
   <div th:replace="fragments/head :: headFragment"></div>
 </head>
-
 <body>
 <div th:replace="fragments/header :: headerFragment"></div>
 
-
-<table class="table table-hover">
-  <thead>
-  <tr>
-    <th>name</th>
-    <th>Github Link</th>
-  </tr>
-  </thead>
-  <tbody>
-  <tr th:if="${repositories.isEmpty()}">
-    <td colspan="2"> No Info Available</td>
-  </tr>
-  <tr th:each="repo : ${repositories}">
-    <td><a th:href="@{'/builds/' + ${repo.name}}" th:text="${repo.name}"></a></td>
-    <td><a th:href="${repo.link}" th:text="${repo.link}"></a></td>
-  </tr>
-  </tbody>
-</table>
+<hr/>
+<div class="container">
+  <div class="row">
+    <div class="col-4 center-block text-center">
+      <h3> Dev </h3>
+    </div>
+    <div class="col-4 center-block text-center">
+      <h3> Staging </h3>
+    </div>
+    <div class="col-4 center-block text-center">
+      <h3> Prod </h3>
+    </div>
+  </div>
+  <hr/>
+  <div th:each="version : ${versions}">
+    <h5 th:text="${version.repo}"></h5>
+    <div class="row">
+      <div class="col-4">
+        <div th:replace="fragments/versionsCard :: versionsCardFragment(${version.dev})"></div>
+      </div>
+      <div class="col-4">
+        <div th:replace="fragments/versionsCard :: versionsCardFragment(${version.staging})"></div>
+      </div>
+      <div class="col-4">
+        <div th:replace="fragments/versionsCard :: versionsCardFragment(${version.prod})"></div>
+      </div>
+    </div>
+    <hr/>
+  </div>
+</div>
 
 
 <div th:replace="fragments/footer :: footerFragment"></div>

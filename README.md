@@ -5,7 +5,8 @@ For a graphical way of viewing builds and promoting them
 ## How to run it
 Just start the spring boot project and will be under the url: 
 
-http://localhost:8080/env-status
+
+http://localhost:8080/env-promoter
 
 ### Docker
 

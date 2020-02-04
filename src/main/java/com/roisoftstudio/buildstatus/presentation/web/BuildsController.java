@@ -26,17 +26,23 @@ public class BuildsController {
     return "repo";
   }
 
-  @GetMapping("/env-status")
+  @GetMapping("/env-promoter")
   public String getBuilds(Model model) {
     model.addAttribute("versions", githubService.getVersions(droneService.getRepositoryNames()));
-    return "env-status";
+    return "env-promoter";
   }
 
   @GetMapping("/")
   public String getRepositories(Model model) {
+    model.addAttribute("versions", githubService.getVersions(droneService.getRepositoryNames()));
+    return "home";
+  }
+
+  @GetMapping("/repositories")
+  public String home(Model model) {
     List<DroneRepo> repositories = droneService.getRepositories();
     model.addAttribute("repositories", repositories);
-    return "home";
+    return "repositories";
   }
 
   private List<DroneBuild> getBuilds(@PathVariable String repo) {
