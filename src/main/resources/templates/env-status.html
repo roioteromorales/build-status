@@ -7,8 +7,20 @@
 <body>
 <div th:replace="fragments/header :: headerFragment"></div>
 
-
+<hr/>
 <div class="container">
+  <div class="row">
+    <div class="col-4 center-block text-center">
+      <h3> Dev </h3>
+    </div>
+    <div class="col-4 center-block text-center">
+      <h3> Staging </h3>
+    </div>
+    <div class="col-4 center-block text-center">
+      <h3> Prod </h3>
+    </div>
+  </div>
+  <hr/>
   <div th:each="version : ${versions}">
     <h5 th:text="${version.repo}"></h5>
     <div class="row">
