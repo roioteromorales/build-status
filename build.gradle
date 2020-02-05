@@ -9,6 +9,7 @@ plugins {
     id 'io.spring.dependency-management' version '1.0.8.RELEASE'
     id "io.freefair.lombok" version "4.1.6"
     id 'java'
+    id 'jacoco'
 }
 
 group = 'com.roisoftstudio'
@@ -30,4 +31,11 @@ dependencies {
 
 test {
     useJUnitPlatform()
+}
+
+jacocoTestReport {
+    reports {
+        xml.enabled true
+        html.enabled false
+    }
 }
