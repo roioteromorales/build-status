@@ -8,6 +8,10 @@ body {
 
 }
 
+.container{
+  /*max-width: 100%;*/
+}
+
 .myCard {
   margin: 10px;
 }
