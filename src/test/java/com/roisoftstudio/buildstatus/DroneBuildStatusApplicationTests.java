@@ -1,13 +1,45 @@
 package com.roisoftstudio.buildstatus;
 
-import org.junit.jupiter.api.Test;
-import org.springframework.boot.test.context.SpringBootTest;
+import static org.assertj.core.api.Java6Assertions.assertThat;
+import static org.springframework.boot.test.context.SpringBootTest.WebEnvironment.RANDOM_PORT;
 
-@SpringBootTest
-class DroneBuildStatusApplicationTests {
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.actuate.autoconfigure.web.server.LocalManagementPort;
+import org.springframework.boot.actuate.autoconfigure.web.server.ManagementServerProperties;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.http.HttpStatus;
+import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.web.client.RestTemplate;
+import org.springframework.web.util.UriComponentsBuilder;
+
+@RunWith(SpringRunner.class)
+@SpringBootTest(webEnvironment = RANDOM_PORT)
+public class DroneBuildStatusApplicationTests {
+
+  @LocalManagementPort
+  private int managementPort;
+
+  @Autowired
+  private ManagementServerProperties managementServerProperties;
 
   @Test
-  void contextLoads() {
+  public void healthCheck() {
+    assertThat(
+        new RestTemplate()
+            .getForEntity(
+                UriComponentsBuilder.fromHttpUrl(getManagementPath() + "/actuator/health")
+                    .build()
+                    .toUri(),
+                String.class)
+            .getStatusCode())
+        .isEqualTo(HttpStatus.OK);
   }
 
+  private String getManagementPath() {
+    final String managementPath = managementServerProperties.getServlet().getContextPath();
+
+    return "http://localhost:" + managementPort + managementPath;
+  }
 }
