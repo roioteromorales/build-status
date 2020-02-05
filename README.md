@@ -1,3 +1,5 @@
+[![codecov](https://codecov.io/gh/roioteromorales/build-status/branch/master/graph/badge.svg)](https://codecov.io/gh/roioteromorales/build-status)
+
 # Build status
 
 For a graphical way of viewing builds and promoting them
