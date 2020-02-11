@@ -12,10 +12,7 @@ import com.roisoftstudio.buildstatus.presentation.api.dto.Versions;
 import feign.FeignException;
 import java.util.List;
 import java.util.concurrent.Callable;
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.stream.Collectors;
+import java.util.function.Function;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
@@ -31,6 +28,7 @@ public class GithubService {
   public static final String PROD = "prod";
   private final GithubRepository githubRepository;
   private final DroneService droneService;
+  private final AsyncInvoker asyncInvoker;
 
   @Value("${github.token}")
   private String token;
@@ -42,43 +40,18 @@ public class GithubService {
   private String githubOrganization;
 
   public Versions getVersions(String repo) {
-    try {
-      return toVersions(repo).call();
-    } catch (Exception e) {
-      e.printStackTrace();
-    }
-    return null;
+    return toVersions(repo);
   }
 
   public List<Versions> getVersions(List<String> repos) {
-    ExecutorService service = Executors.newFixedThreadPool(100);
-
-    List<Callable<Versions>> callableVersionsList = repos.stream()
+    return asyncInvoker.invokeAll(repos.stream()
         .parallel()
-        .map(this::toVersions)
-        .collect(toList());
-
-    try {
-      return service.invokeAll(callableVersionsList).stream()
-          .map(versionsFuture -> {
-            try {
-              return versionsFuture.get();
-            } catch (InterruptedException e) {
-              e.printStackTrace();
-            } catch (ExecutionException e) {
-              e.printStackTrace();
-            }
-            return null;
-          })
-          .collect(Collectors.toList());
-    } catch (Exception e) {
-      e.printStackTrace();
-    }
-    return null;
+        .map((Function<String, Callable<Versions>>) repo -> () -> toVersions(repo))
+        .collect(toList()));
   }
 
-  private Callable<Versions> toVersions(String repo) {
-    return () -> Versions.builder()
+  private Versions toVersions(String repo) {
+    return Versions.builder()
         .repo(repo)
         .dev(getVersionsFor(repo, DEV, DEV, STAGING))
         .staging(getVersionsFor(repo, DEV, STAGING, PROD))
