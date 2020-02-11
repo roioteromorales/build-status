@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 
-<div class="card myCard shadow" th:fragment="versionsCardFragment (version)">
-  <div class="card-body" th:classappend="${version.status}">
-    <p class="card-text" th:classappend="${version.droneBuildStatus}">
+<div class="card mySmallCard shadow" th:fragment="versionsCardFragment (version)">
+  <div class="card-body small-padding" th:classappend="${version.status}">
+    <p class="card-text small-padding" th:classappend="${version.droneBuildStatus}">
       <a th:text="${version.droneBuildEvent} + ' build #' +  ${version.droneBuildNumber} + ' -> ' + ${version.droneBuildStatus}" target="_blank" th:href="${version.droneBuildLink}"></a>
     </p>
-    <p><a class="card-text" th:text="${version.statusMessage}" target="_blank" th:href="${version.diffLink}"></a></p>
+    <p class="small-padding"><a class="card-text" th:text="${version.statusMessage}" target="_blank" th:href="${version.diffLink}"></a></p>
   </div>
 </div>
 </div>

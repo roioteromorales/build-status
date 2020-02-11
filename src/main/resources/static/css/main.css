@@ -11,9 +11,21 @@ body {
 .container{
   /*max-width: 100%;*/
 }
+.fullwidth{
+  max-width: 100%;
+}
 
 .myCard {
   margin: 10px;
+}
+
+.mySmallCard {
+  margin: 3px;
+}
+.small-padding {
+  margin-block-start: 0.25rem;
+  margin-block-end: 0.25rem;
+  padding: 0.25rem;
 }
 
 .success, .identical {
