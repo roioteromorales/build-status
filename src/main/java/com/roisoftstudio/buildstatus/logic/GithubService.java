@@ -75,6 +75,7 @@ public class GithubService {
           .droneBuildLink(droneUrl + "/" + organization + "/" + repo + "/" + droneBuild.getNumber())
           .droneBuildNumber(droneBuild.getNumber())
           .commitMessage(baseCommit.getCommit().getMessage())
+          .diffNumber(getDiff(githubCompare))
           .diffLink(githubCompare.getHtml_url())
           .author(baseCommit.getCommit().getAuthor().getName())
           .datetime(baseCommit.getCommit().getAuthor().getDate())

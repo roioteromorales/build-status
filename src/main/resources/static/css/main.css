@@ -20,12 +20,13 @@ body {
 }
 
 .mySmallCard {
-  margin: 3px;
+  margin: 1px;
 }
 .small-padding {
   margin-block-start: 0.25rem;
   margin-block-end: 0.25rem;
-  padding: 0.25rem;
+  padding-top: 0;
+  padding-bottom: 0;
 }
 
 .success, .identical {
@@ -33,14 +34,19 @@ body {
   border: 1px solid darkgreen;
 }
 
-.fail, .behind, .ahead, .failure, .killed {
+.fail, .behind, .ahead, .killed {
   background-color: red;
   border: 1px solid darkred;
 }
 
-.pending, .running {
+.failure{
   background-color: orange;
-  border: 1px solid darkorange;
+  border: 1px solid darkred;
+}
+
+.pending, .running {
+  background-color: #00ffeb;
+  border: 1px solid #0025ff;
 }
 
 .warning {

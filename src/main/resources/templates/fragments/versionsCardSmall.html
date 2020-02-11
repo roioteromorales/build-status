@@ -2,11 +2,20 @@
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 
 <div class="card mySmallCard shadow" th:fragment="versionsCardFragment (version)">
-  <div class="card-body small-padding" th:classappend="${version.status}">
-    <p class="card-text small-padding" th:classappend="${version.droneBuildStatus}">
-      <a th:text="${version.droneBuildEvent} + ' build #' +  ${version.droneBuildNumber} + ' -> ' + ${version.droneBuildStatus}" target="_blank" th:href="${version.droneBuildLink}"></a>
-    </p>
-    <p class="small-padding"><a class="card-text" th:text="${version.statusMessage}" target="_blank" th:href="${version.diffLink}"></a></p>
+  <div class="card-body small-padding" >
+    <div class="row">
+      <div class="col-5 center-block text-center" th:classappend="${version.status}">
+        <p class="small-padding">
+          <a th:text="' Diff commits: ' + ${version.diffNumber}" target="_blank" th:href="${version.diffLink}"></a>
+        </p>
+      </div>
+      <div class="col-7 center-block text-center" th:classappend="${version.droneBuildStatus}">
+        <p class="small-padding">
+          <a th:text="${version.droneBuildEvent} + ' build #' +  ${version.droneBuildNumber} + ' -> ' + ${version.droneBuildStatus}" target="_blank"
+             th:href="${version.droneBuildLink}"></a>
+        </p>
+      </div>
+    </div>
   </div>
 </div>
 </div>
