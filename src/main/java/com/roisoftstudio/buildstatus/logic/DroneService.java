@@ -44,6 +44,13 @@ public class DroneService {
         .collect(toList());
   }
 
+  public List<String> getRepositoryNamesLike(String search) {
+    return getRepositories().stream()
+        .map(DroneRepo::getName)
+        .filter(name -> name.contains(search))
+        .collect(toList());
+  }
+
   public DroneBuild promoteBuild(String repo, Integer buildNumber, String environment) {
     return droneRepository.promoteBuild(organization, repo, buildNumber, environment, token);
   }
@@ -57,6 +64,7 @@ public class DroneService {
         .filter(droneBuild -> droneBuild.getAfter().equalsIgnoreCase(commit))
         .filter(droneBuild -> !droneBuild.getBefore().equalsIgnoreCase(commit))
         .findFirst()
-        .orElseThrow(() -> new BuildNotFoundException("Could not find the build for that commit, maybe is too old (only checking last 100 builds): " + commit));
+        .orElseThrow(() -> new BuildNotFoundException(
+            "Could not find the build for that commit, maybe is too old (only checking last 100 builds): " + commit));
   }
 }

@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 @RequiredArgsConstructor
@@ -26,20 +27,26 @@ public class BuildsController {
     return "repo";
   }
 
+//  @GetMapping("/env-promoter")
+//  public String eventPromoter(Model model) {
+//    model.addAttribute("versions", githubService.getVersions(droneService.getRepositoryNames()));
+//    return "env-promoter";
+//  }
+
   @GetMapping("/env-promoter")
-  public String getBuilds(Model model) {
-    model.addAttribute("versions", githubService.getVersions(droneService.getRepositoryNames()));
+  public String eventPromoterForRepo(Model model, @RequestParam(defaultValue = "") String search) {
+    model.addAttribute("versions", githubService.getVersions(droneService.getRepositoryNamesLike(search)));
     return "env-promoter";
   }
 
   @GetMapping("/")
-  public String getRepositories(Model model) {
+  public String home(Model model) {
     model.addAttribute("versions", githubService.getVersions(droneService.getRepositoryNames()));
     return "home";
   }
 
   @GetMapping("/repositories")
-  public String home(Model model) {
+  public String getRepositories(Model model) {
     List<DroneRepo> repositories = droneService.getRepositories();
     model.addAttribute("repositories", repositories);
     return "repositories";
