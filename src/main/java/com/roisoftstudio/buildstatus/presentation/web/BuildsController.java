@@ -27,12 +27,6 @@ public class BuildsController {
     return "repo";
   }
 
-//  @GetMapping("/env-promoter")
-//  public String eventPromoter(Model model) {
-//    model.addAttribute("versions", githubService.getVersions(droneService.getRepositoryNames()));
-//    return "env-promoter";
-//  }
-
   @GetMapping("/env-promoter")
   public String eventPromoterForRepo(Model model, @RequestParam(defaultValue = "") String search) {
     model.addAttribute("versions", githubService.getVersions(droneService.getRepositoryNamesLike(search)));
@@ -40,8 +34,8 @@ public class BuildsController {
   }
 
   @GetMapping("/")
-  public String home(Model model) {
-    model.addAttribute("versions", githubService.getVersions(droneService.getRepositoryNames()));
+  public String home(Model model, @RequestParam(defaultValue = "") String search) {
+    model.addAttribute("versions", githubService.getVersions(droneService.getRepositoryNamesLike(search)));
     return "home";
   }
 

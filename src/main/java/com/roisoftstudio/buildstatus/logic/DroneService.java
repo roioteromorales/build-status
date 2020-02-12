@@ -38,12 +38,6 @@ public class DroneService {
         .collect(toList());
   }
 
-  public List<String> getRepositoryNames() {
-    return getRepositories().stream()
-        .map(DroneRepo::getName)
-        .collect(toList());
-  }
-
   public List<String> getRepositoryNamesLike(String search) {
     return getRepositories().stream()
         .map(DroneRepo::getName)
