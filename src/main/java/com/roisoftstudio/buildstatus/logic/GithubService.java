@@ -110,6 +110,8 @@ public class GithubService {
         return githubCompare.getBehind_by();
       case "identical":
         return 0;
+      case "diverged":
+        return githubCompare.getAhead_by() + githubCompare.getBehind_by();
       default:
         throw new RuntimeException("Not implemented status: " + githubCompare.getStatus());
     }
