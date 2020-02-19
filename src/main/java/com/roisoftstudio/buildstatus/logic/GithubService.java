@@ -96,6 +96,9 @@ public class GithubService {
   }
 
   private String getMessage(GithubCompare githubCompare, String from, String to) {
+    if(githubCompare.getStatus().equals("diverged")){
+      return to + " and " + from + " have diverged " + githubCompare.getAhead_by() + " /  " + githubCompare.getBehind_by() + " commits";
+    }
     return to + " is " + githubCompare.getStatus() + " of " + from + " by " + getDiff(githubCompare) + " commits.";
   }
 
