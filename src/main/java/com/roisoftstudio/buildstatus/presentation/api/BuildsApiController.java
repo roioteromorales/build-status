@@ -23,7 +23,7 @@ public class BuildsApiController {
 
   @GetMapping("/repositories")
   public List<DroneRepo> getRepositories() {
-    return droneService.getRepositories();
+    return droneService.getRepositories("");
   }
 
   @PostMapping("/builds/promote")

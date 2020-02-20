@@ -1,7 +1,6 @@
 package com.roisoftstudio.buildstatus.presentation.web;
 
 import com.roisoftstudio.buildstatus.data.dto.DroneBuild;
-import com.roisoftstudio.buildstatus.data.dto.DroneRepo;
 import com.roisoftstudio.buildstatus.logic.DroneService;
 import com.roisoftstudio.buildstatus.logic.GithubService;
 import java.util.List;
@@ -28,22 +27,16 @@ public class BuildsController {
   }
 
   @GetMapping("/env-promoter")
-  public String eventPromoterForRepo(Model model, @RequestParam(defaultValue = "") String search) {
-    model.addAttribute("versions", githubService.getVersions(droneService.getRepositoryNamesLike(search)));
+  public String eventPromoterForRepo(Model model, @RequestParam(defaultValue = "") String search,
+      @RequestParam(defaultValue = "") String team) {
+    model.addAttribute("versions", githubService.getVersions(droneService.getRepositoryForTeamWithNamesLike(team, search)));
     return "env-promoter";
   }
 
   @GetMapping("/")
-  public String home(Model model, @RequestParam(defaultValue = "") String search) {
-    model.addAttribute("versions", githubService.getVersions(droneService.getRepositoryNamesLike(search)));
+  public String home(Model model, @RequestParam(defaultValue = "") String search, @RequestParam(defaultValue = "") String team) {
+    model.addAttribute("versions", githubService.getVersions(droneService.getRepositoryForTeamWithNamesLike(team, search)));
     return "home";
-  }
-
-  @GetMapping("/repositories")
-  public String getRepositories(Model model) {
-    List<DroneRepo> repositories = droneService.getRepositories();
-    model.addAttribute("repositories", repositories);
-    return "repositories";
   }
 
   private List<DroneBuild> getBuilds(@PathVariable String repo) {
