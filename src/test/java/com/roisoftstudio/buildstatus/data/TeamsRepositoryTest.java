@@ -27,11 +27,21 @@ public class TeamsRepositoryTest {
   }
 
   @Test
+  public void canDelete() {
+    List<String> reposToAdd = asList("repo1", "repo2");
+    teamsRepository.addReposToTeam("team2", reposToAdd);
+
+    List<String> repos = teamsRepository.deleteReposFromTeam("team2", asList("repo1"));
+
+    assertThat(repos).containsExactly("repo2");
+  }
+
+  @Test
   public void canRetrieve() {
     List<String> reposToAdd = asList("repo1", "repo2");
     teamsRepository.addReposToTeam("team1", reposToAdd);
 
-    List<String> repos = teamsRepository.findByTeam("team1");
+    List<String> repos = teamsRepository.getTeamRepos("team1");
 
     assertThat(repos).containsExactlyInAnyOrderElementsOf(reposToAdd);
   }

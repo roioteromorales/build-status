@@ -26,7 +26,16 @@ public class TeamsRepository {
     return new ArrayList<>(storedSet);
   }
 
-  public List<String> findByTeam(String team) {
+  public List<String> deleteReposFromTeam(String team, List<String> reposToDelete) {
+    ConcurrentMap map = database.hashMap(TEAMS).createOrOpen();
+    Set<String> storedSet = (Set<String>) map.getOrDefault(team, new HashSet<>());
+    reposToDelete.forEach(s -> storedSet.remove(s));
+    map.put(team, storedSet);
+    database.commit();
+    return new ArrayList<>(storedSet);
+  }
+
+  public List<String> getTeamRepos(String team) {
     ConcurrentMap map = database.hashMap(TEAMS).createOrOpen();
     Set<String> storedSet = (Set<String>) map.getOrDefault(team, new HashSet<>());
     database.commit();
