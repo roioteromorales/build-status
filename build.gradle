@@ -15,7 +15,6 @@ plugins {
 
 group = 'com.roisoftstudio'
 version = '0.0.1-SNAPSHOT'
-sourceCompatibility = '1.8'
 
 repositories {
     mavenCentral()
@@ -27,6 +26,8 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-actuator'
 
     implementation 'org.springframework.cloud:spring-cloud-starter-openfeign:2.1.2.RELEASE'
+
+    implementation 'org.mapdb:mapdb:3.0.8'
 
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }

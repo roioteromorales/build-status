@@ -1,4 +1,4 @@
-package com.roisoftstudio.buildstatus.logic;
+package com.roisoftstudio.buildstatus.logic.helpers;
 
 import com.roisoftstudio.buildstatus.presentation.api.dto.Versions;
 import java.util.List;
