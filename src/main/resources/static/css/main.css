@@ -30,26 +30,26 @@ body {
 }
 
 .success, .identical {
-  background-color: lightgreen;
-  border: 1px solid darkgreen;
+  background-color: #A5D6A7;
+  border: 1px solid #388E3C;
 }
 
 .fail, .behind, .ahead, .killed {
-  background-color: red;
-  border: 1px solid darkred;
+  background-color: #F44336;
+  border: 1px solid #B71C1C;
 }
 
 .failure{
-  background-color: orange;
-  border: 1px solid darkred;
+  background-color: #F57F17;
+  border: 1px solid #B71C1C;
 }
 
 .pending, .running {
-  background-color: #00ffeb;
-  border: 1px solid #0025ff;
+  background-color: #84FFFF;
+  border: 1px solid #01579B;
 }
 
 .warning {
-  background-color: lightgoldenrodyellow;
-  border: 1px solid orange;
+  background-color: #FFFDE7;
+  border: 1px solid #F57F17;
 }
