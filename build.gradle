@@ -27,8 +27,6 @@ dependencies {
 
     implementation 'org.springframework.cloud:spring-cloud-starter-openfeign:2.1.2.RELEASE'
 
-    implementation 'org.mapdb:mapdb:3.0.8'
-
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
 
