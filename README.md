@@ -9,7 +9,7 @@ For a graphical way of viewing builds and promoting them
 Just start the spring boot project and will be under the url: 
 
 
-http://localhost:8080/env-promoter
+http://localhost:8080/
 
 ### Docker
 
@@ -17,12 +17,12 @@ http://localhost:8080/env-promoter
 
 docker build -t build-status .
 
-`docker run -e DRONE_SERVER=$DRONE_SERVER -e DRONE_TOKEN=$DRONE_TOKEN -e ORGANIZATION=$ORGANIZATION -e GITHUB_TOKEN=$GITHUB_TOKEN build-status`
+`docker run -e DRONE_SERVER=$DRONE_SERVER -e DRONE_TOKEN=$DRONE_TOKEN -e ORGANIZATION=$ORGANIZATION -e GITHUB_TOKEN=$GITHUB_TOKEN -p8080:8080 build-status`
 
 
 #### To run the existing image from docker hub:
 
-`docker run -e DRONE_SERVER=$DRONE_SERVER -e DRONE_TOKEN=$DRONE_TOKEN -e ORGANIZATION=$ORGANIZATION -e GITHUB_TOKEN=$GITHUB_TOKEN roioteromorales/build-status:latest `
+`docker run -e DRONE_SERVER=$DRONE_SERVER -e DRONE_TOKEN=$DRONE_TOKEN -e ORGANIZATION=$ORGANIZATION -e GITHUB_TOKEN=$GITHUB_TOKEN -p8080:8080 roioteromorales/build-status:latest `
 
 or you can use the docker-compose file:
 
