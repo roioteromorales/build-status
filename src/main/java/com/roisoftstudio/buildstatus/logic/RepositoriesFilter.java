@@ -31,6 +31,7 @@ public class RepositoriesFilter {
         "red-eagle-eye-proxy",
         "red-gatlin",
         "red-household-sweeper",
+        "red-member",
         "red-monitor-proxy",
         "red-onboarding",
         "red-smoke",
