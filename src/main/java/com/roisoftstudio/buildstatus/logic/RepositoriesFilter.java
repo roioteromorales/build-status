@@ -43,6 +43,18 @@ public class RepositoriesFilter {
         "red-vaa-member-ingestion",
         "red-vaa-txn-ingestion"
     ));
+    teamsToRepos.put("api", asList(
+        "red-api-proxy",
+        "red-balance-management",
+        "red-balances",
+        "red-eagle-eye-proxy",
+        "red-onboarding",
+        "red-statement",
+        "red-member",
+        "red-txn-processor",
+        "red-outbound-proxy",
+        "red-user-identity"
+    ));
   }
 
   @PostConstruct
