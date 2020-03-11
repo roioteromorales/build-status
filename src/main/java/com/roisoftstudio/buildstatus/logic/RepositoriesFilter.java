@@ -49,6 +49,7 @@ public class RepositoriesFilter {
         "red-balances",
         "red-eagle-eye-proxy",
         "red-onboarding",
+        "red-dummy",
         "red-statement",
         "red-member",
         "red-txn-processor",
