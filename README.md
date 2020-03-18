@@ -11,23 +11,6 @@ Just start the spring boot project and will be under the url:
 
 http://localhost:8080/
 
-### Docker
-
-#### To build and run your own image:
-
-docker build -t build-status .
-
-`docker run -e DRONE_SERVER=$DRONE_SERVER -e DRONE_TOKEN=$DRONE_TOKEN -e ORGANIZATION=$ORGANIZATION -e GITHUB_TOKEN=$GITHUB_TOKEN -p8080:8080 build-status`
-
-
-#### To run the existing image from docker hub:
-
-`docker run -e DRONE_SERVER=$DRONE_SERVER -e DRONE_TOKEN=$DRONE_TOKEN -e ORGANIZATION=$ORGANIZATION -e GITHUB_TOKEN=$GITHUB_TOKEN -p8080:8080 roioteromorales/build-status:latest `
-
-or you can use the docker-compose file:
-
-`docker-compose up`
-
 ### Requirements:
 Add to your environment variables these values:
 
@@ -36,3 +19,21 @@ Add to your environment variables these values:
   - ORGANIZATION ex: roisoftstudio
   - GITHUB_TOKEN ex: 123456789abcd
 
+## Just Run it!
+
+### To run the existing image from docker hub:
+
+`docker run -e DRONE_SERVER=$DRONE_SERVER -e DRONE_TOKEN=$DRONE_TOKEN -e ORGANIZATION=$ORGANIZATION -e GITHUB_TOKEN=$GITHUB_TOKEN -p8080:8080 roioteromorales/build-status:latest `
+
+
+## Build your own
+
+### To build and run your own image:
+
+docker build -t build-status .
+
+`docker run -e DRONE_SERVER=$DRONE_SERVER -e DRONE_TOKEN=$DRONE_TOKEN -e ORGANIZATION=$ORGANIZATION -e GITHUB_TOKEN=$GITHUB_TOKEN -p8080:8080 build-status`
+
+or you can use the docker-compose file:
+
+`docker-compose up`
