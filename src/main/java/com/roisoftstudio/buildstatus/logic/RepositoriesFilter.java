@@ -33,6 +33,7 @@ public class RepositoriesFilter {
         "red-member",
         "red-monitor-proxy",
         "red-onboarding",
+        "red-outbound-proxy",
         "red-smoke",
         "red-statement",
         "red-txn-ingestion",
