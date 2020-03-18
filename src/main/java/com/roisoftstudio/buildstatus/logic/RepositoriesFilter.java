@@ -29,7 +29,6 @@ public class RepositoriesFilter {
         "red-balance-management",
         "red-dummy",
         "red-eagle-eye-proxy",
-        "red-gatlin",
         "red-member",
         "red-monitor-proxy",
         "red-onboarding",
