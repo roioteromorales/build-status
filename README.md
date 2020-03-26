@@ -25,10 +25,11 @@ Add to your environment variables these values:
 
 `docker run -e DRONE_SERVER=$DRONE_SERVER -e DRONE_TOKEN=$DRONE_TOKEN -e ORGANIZATION=$ORGANIZATION -e GITHUB_TOKEN=$GITHUB_TOKEN -p8080:8080 roioteromorales/build-status:latest `
 
+## Want to personalize it?
 
-## Build your own
+#### Build your own
 
-### To build and run your own image:
+##### To build and run your own image:
 
 docker build -t build-status .
 
