@@ -21,7 +21,7 @@
     </div>
   </div>
   <hr/>
-  <div th:each="version : ${versions}">
+  <div th:each="version : ${versions}" class="versionRow">
     <h5 id="repoName" th:text="${version.repo}"></h5>
     <div class="row">
       <div class="col-4">
