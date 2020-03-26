@@ -25,6 +25,7 @@ public class RepositoriesFilter {
   public RepositoriesFilter() {
     teamsToRepos.put("core", asList(
         "red-api-proxy",
+        "red-back-office",
         "red-balances",
         "red-balance-management",
         "red-dummy",
