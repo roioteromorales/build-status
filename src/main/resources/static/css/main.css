@@ -16,12 +16,19 @@ body {
 }
 
 .myCard {
+  border-radius: 15px;
   margin: 10px;
 }
 
 .mySmallCard {
+  border-radius: 5px;
   margin: 1px;
 }
+
+.bordered{
+  border-radius: 15px;
+}
+
 .small-padding {
   margin-block-start: 0.25rem;
   margin-block-end: 0.25rem;

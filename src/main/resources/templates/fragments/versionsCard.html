@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 
 <div class="card myCard shadow" th:fragment="versionsCardFragment (version)">
-  <div class="card-body" th:classappend="${version.status}">
+  <div class="card-body bordered" th:classappend="${version.status}">
     <input th:if="${version?.promotingEnvironment}" class="btn btn-primary" type="button" value="Promote"
            th:data-repo="${version.repo}" th:data-build="${version.droneBuildNumber}" th:data-env="${version.promotingEnvironment}"
            onclick="promote(this.getAttribute('data-repo'), this.getAttribute('data-build'), this.getAttribute('data-env'));"/>
