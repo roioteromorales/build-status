@@ -10,13 +10,16 @@
 <hr/>
 <div class="container">
   <div class="row">
-    <div class="col-4 center-block text-center">
+    <div class="col center-block text-center">
       <h3> Dev </h3>
     </div>
-    <div class="col-4 center-block text-center">
+    <div class="col center-block text-center">
       <h3> Staging </h3>
     </div>
-    <div class="col-4 center-block text-center">
+    <div class="col center-block text-center">
+      <h3> Perf </h3>
+    </div>
+    <div class="col center-block text-center">
       <h3> Prod </h3>
     </div>
   </div>
@@ -24,13 +27,16 @@
   <div th:each="version : ${versions}" class="versionRow">
     <h5 id="repoName" th:text="${version.repo}"></h5>
     <div class="row">
-      <div class="col-4">
+      <div class="col">
         <div th:replace="fragments/versionsCard :: versionsCardFragment(${version.dev})"></div>
       </div>
-      <div class="col-4">
+      <div class="col">
         <div th:replace="fragments/versionsCard :: versionsCardFragment(${version.staging})"></div>
       </div>
-      <div class="col-4">
+      <div class="col">
+        <div th:replace="fragments/versionsCard :: versionsCardFragment(${version.perf})"></div>
+      </div>
+      <div class="col">
         <div th:replace="fragments/versionsCard :: versionsCardFragment(${version.prod})"></div>
       </div>
     </div>

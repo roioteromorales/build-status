@@ -11,5 +11,6 @@ public class Versions {
   private final String repo;
   private final VersionsDiff dev;
   private final VersionsDiff staging;
+  private final VersionsDiff perf;
   private final VersionsDiff prod;
 }

@@ -26,6 +26,7 @@ public class GithubService {
 
   public static final String DEV = "dev";
   public static final String STAGING = "staging";
+  public static final String PERF = "perf";
   public static final String PROD = "prod";
   private final GithubRepository githubRepository;
   private final DroneService droneService;
@@ -45,6 +46,14 @@ public class GithubService {
   }
 
   public List<Versions> getVersions(List<String> repos) {
+    var l = repos.stream()
+        .parallel()
+        .map((Function<String, Callable<Versions>>) repo -> () -> toVersions(repo))
+        .collect(toList());
+    var ll = asyncInvoker.invokeAll(repos.stream()
+        .parallel()
+        .map((Function<String, Callable<Versions>>) repo -> () -> toVersions(repo))
+        .collect(toList()));
     return asyncInvoker.invokeAll(repos.stream()
         .parallel()
         .map((Function<String, Callable<Versions>>) repo -> () -> toVersions(repo))
@@ -55,9 +64,11 @@ public class GithubService {
     return Versions.builder()
         .repo(repo)
         .dev(getVersionsFor(repo, DEV, DEV, STAGING))
-        .staging(getVersionsFor(repo, DEV, STAGING, PROD))
-        .prod(getVersionsFor(repo, STAGING, PROD, null))
+        .staging(getVersionsFor(repo, DEV, STAGING, PERF))
+        .perf(getVersionsFor(repo, STAGING, PERF, PROD))
+        .prod(getVersionsFor(repo, PERF, PROD, null))
         .build();
+
   }
 
   private VersionsDiff getVersionsFor(String repo, String base, String compare, String promotingEnvironment) {

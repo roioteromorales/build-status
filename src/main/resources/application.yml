@@ -1,11 +1,11 @@
 drone:
-  token: ${DRONE_TOKEN}
-  url: ${DRONE_SERVER}
-  organization: ${ORGANIZATION}
+  token: LIHSKAvytiKdtZKQPdr7nSIU6uBxnGel
+  url: https://ci.build.loyalty.virgin.com
+  organization: virgin-loyalty
 github:
-  token: ${GITHUB_TOKEN}
+  token: 8193be1213c8fb17031962f796d3c525801ea67f
   url: https://api.github.com/
-  organization: ${ORGANIZATION}
+  organization: virgin-loyalty
   repositoryPrefix: "red-"
 
 server:
