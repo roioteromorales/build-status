@@ -46,14 +46,6 @@ public class GithubService {
   }
 
   public List<Versions> getVersions(List<String> repos) {
-    var l = repos.stream()
-        .parallel()
-        .map((Function<String, Callable<Versions>>) repo -> () -> toVersions(repo))
-        .collect(toList());
-    var ll = asyncInvoker.invokeAll(repos.stream()
-        .parallel()
-        .map((Function<String, Callable<Versions>>) repo -> () -> toVersions(repo))
-        .collect(toList()));
     return asyncInvoker.invokeAll(repos.stream()
         .parallel()
         .map((Function<String, Callable<Versions>>) repo -> () -> toVersions(repo))
