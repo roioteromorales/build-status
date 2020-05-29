@@ -16,7 +16,6 @@ public class FeignErrorDecoderLoggerConfiguration {
   public ErrorDecoder errorDecoder() {
     return (methodKey, response) -> {
       try {
-        log.info("{}", response);
         log.info("{} - {} - {}", response.request().url(), response.status(), IOUtils.toString(response.body().asReader()));
       } catch (Exception ignored) {
       }
