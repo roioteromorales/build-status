@@ -6,7 +6,7 @@ services:
     ports:
       - 8080:8080
     environment:
-      DRONE_TOKEN: LIHSKAvytiKdtZKQPdr7nSIU6uBxnGel
+      DRONE_TOKEN:
       DRONE_SERVER: https://ci.build.loyalty.virgin.com
       ORGANIZATION: virgin-loyalty
-      GITHUB_TOKEN: 8193be1213c8fb17031962f796d3c525801ea67f
+      GITHUB_TOKEN:
