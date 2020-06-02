@@ -22,8 +22,11 @@
     <div class="col center-block text-center">
       <h5> Prod </h5>
     </div>
-    <div class="col-2 center-block text-center">
+    <div class="col center-block text-center">
       <h5> Perf </h5>
+    </div>
+    <div class="col-6 center-block text-center">
+      <h5> Promote </h5>
     </div>
   </div>
   <hr/>
@@ -33,16 +36,19 @@
         <h5 class="small-padding center-block text-right" th:text="${version.repo}"></h5>
       </div>
       <div class="col">
-        <div th:replace="fragments/versionsCardSmall :: versionsCardFragment(${version.dev})"></div>
+        <div th:replace="fragments/versionsCardPerf :: versionsCardPerfFragment(${version.dev})"></div>
       </div>
       <div class="col">
-        <div th:replace="fragments/versionsCardSmall :: versionsCardFragment(${version.staging})"></div>
+        <div th:replace="fragments/versionsCardPerf :: versionsCardPerfFragment(${version.staging})"></div>
       </div>
       <div class="col">
-        <div th:replace="fragments/versionsCardSmall :: versionsCardFragment(${version.prod})"></div>
+        <div th:replace="fragments/versionsCardPerf :: versionsCardPerfFragment(${version.prod})"></div>
       </div>
-      <div class="col-2">
-        <div th:replace="fragments/perfVersionsCardSmall :: versionsCardFragment(${version.perf})"></div>
+      <div class="col">
+        <div th:replace="fragments/versionsCardPerf :: versionsCardPerfFragment(${version.perf})"></div>
+      </div>
+      <div class="col-6">
+        <div th:replace="fragments/versionsCardPromote :: versionsCardPromoteFragment(${version.repo}, ${builds.get(version.repo)})"></div>
       </div>
     </div>
   </div>

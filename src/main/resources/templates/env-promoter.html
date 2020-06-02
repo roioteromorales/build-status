@@ -17,10 +17,10 @@
       <h3> Staging </h3>
     </div>
     <div class="col center-block text-center">
-      <h3> Perf </h3>
+      <h3> Prod </h3>
     </div>
     <div class="col center-block text-center">
-      <h3> Prod </h3>
+      <h3> Perf </h3>
     </div>
   </div>
   <hr/>
@@ -34,10 +34,10 @@
         <div th:replace="fragments/versionsCard :: versionsCardFragment(${version.staging})"></div>
       </div>
       <div class="col">
-        <div th:replace="fragments/versionsCard :: versionsCardFragment(${version.perf})"></div>
+        <div th:replace="fragments/versionsCard :: versionsCardFragment(${version.prod})"></div>
       </div>
       <div class="col">
-        <div th:replace="fragments/versionsCard :: versionsCardFragment(${version.prod})"></div>
+        <div th:replace="fragments/versionsCard :: versionsCardFragment(${version.perf})"></div>
       </div>
     </div>
     <hr/>

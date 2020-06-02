@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<div class="card mySmallCard" th:fragment="versionsCardPerfFragment (version)" th:classappend="${version.droneBuildStatus}">
+  <div class="card-body small-padding" >
+    <div class="row">
+      <div class="col center-block text-center">
+        <p class="small-padding">
+          <a th:text="' # ' +  ${version.droneBuildNumber}" target="_blank"></a>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+</html>

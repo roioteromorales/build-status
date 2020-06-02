@@ -5,9 +5,13 @@ import static java.util.stream.Collectors.toList;
 import com.roisoftstudio.buildstatus.data.DroneRepository;
 import com.roisoftstudio.buildstatus.data.dto.DroneBuild;
 import com.roisoftstudio.buildstatus.data.dto.DroneRepo;
+import com.roisoftstudio.buildstatus.data.dto.DroneShortBuild;
 import com.roisoftstudio.buildstatus.logic.exception.BuildNotFoundException;
 import java.util.Collection;
 import java.util.List;
+import java.util.Map;
+import java.util.function.BiFunction;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
@@ -22,6 +26,8 @@ public class DroneService {
 
   @Value("${drone.token}")
   private String token;
+  @Value("${drone.url}")
+  private String url;
   @Value("${drone.organization}")
   private String organization;
   @Value("${github.repositoryPrefix}")
@@ -62,4 +68,29 @@ public class DroneService {
         .orElseThrow(() -> new BuildNotFoundException(
             "Could not find the build for that commit, maybe is too old (only checking last 100 builds): " + commit));
   }
+
+  public Map<String, List<DroneShortBuild>> getBuildForPromotion(List<String> repos){
+    return repos
+        .parallelStream()
+        .collect(Collectors.toMap(repo -> repo, repo -> IntStream.rangeClosed(1, 5)
+            .parallel()
+            .boxed()
+            .map(page -> droneRepository.getBuildsForPage(organization, repo, page, token))
+            .flatMap(Collection::stream)
+            .filter(droneBuild -> droneBuild.getStatus().equalsIgnoreCase("success"))
+            .filter(droneBuild -> droneBuild.getEvent().equalsIgnoreCase("push"))
+            .filter(droneBuild -> droneBuild.getSource().equalsIgnoreCase("master"))
+            .filter(droneBuild -> droneBuild.getTarget().equalsIgnoreCase("master"))
+            .limit(10)
+            .map(droneBuild -> shortBuildFunction.apply(repo, droneBuild))
+            .collect(Collectors.toList())));
+  }
+
+  private BiFunction<String, DroneBuild, DroneShortBuild> shortBuildFunction = (repo, droneBuild) -> {
+    return DroneShortBuild.builder()
+        .number(droneBuild.getNumber())
+        .display(droneBuild.getAuthor_name(), droneBuild.getMessage())
+        .link(url, organization, repo)
+        .build();
+  };
 }

@@ -56,11 +56,10 @@ public class GithubService {
     return Versions.builder()
         .repo(repo)
         .dev(getVersionsFor(repo, DEV, DEV, STAGING))
-        .staging(getVersionsFor(repo, DEV, STAGING, PERF))
-        .perf(getVersionsFor(repo, STAGING, PERF, PROD))
-        .prod(getVersionsFor(repo, PERF, PROD, null))
+        .staging(getVersionsFor(repo, DEV, STAGING, PROD))
+        .prod(getVersionsFor(repo, STAGING, PROD, null))
+        .perf(getVersionsFor(repo, PERF, PERF, null))
         .build();
-
   }
 
   private VersionsDiff getVersionsFor(String repo, String base, String compare, String promotingEnvironment) {

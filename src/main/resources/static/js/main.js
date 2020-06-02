@@ -12,6 +12,26 @@ var promote = async (repo, buildNumber, environment) => {
   location.reload();
 }
 
+var promoteBuild = async (repo) => {
+
+  console.log("repo: "+repo);
+  var buildNumber = $("#"+repo+"-build");
+  var environment = $("#"+repo+"-env");
+
+  if (buildNumber && environment){
+    var buildNumberSelected = buildNumber.children("option:selected").val();
+    var environmentSelected = environment.children("option:selected").val();
+
+    if (buildNumberSelected && environmentSelected){
+      console.log("buildNumber: "+buildNumberSelected);
+      console.log("environment: "+environmentSelected);
+      promote(repo, buildNumberSelected, environmentSelected);
+    } else {
+      alert("Please select a build and env")
+    }
+  }
+}
+
 function searchRepo() {
   var input, filter, row, rows, i, txtValue;
   input = document.getElementById('search');

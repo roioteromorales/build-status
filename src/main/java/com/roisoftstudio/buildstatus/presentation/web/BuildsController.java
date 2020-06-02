@@ -33,6 +33,17 @@ public class BuildsController {
     return "env-promoter";
   }
 
+  @GetMapping("/build-promoter")
+  public String eventBuildPromoterForRepo(Model model, @RequestParam(defaultValue = "") String search,
+      @RequestParam(defaultValue = "") String team) {
+
+    var repos = droneService.getRepositoryForTeamWithNamesLike(team, search);
+
+    model.addAttribute("versions", githubService.getVersions(repos));
+    model.addAttribute("builds", droneService.getBuildForPromotion(repos));
+    return "build-promoter";
+  }
+
   @GetMapping("/")
   public String home(Model model, @RequestParam(defaultValue = "") String search, @RequestParam(defaultValue = "") String team) {
     model.addAttribute("versions", githubService.getVersions(droneService.getRepositoryForTeamWithNamesLike(team, search)));

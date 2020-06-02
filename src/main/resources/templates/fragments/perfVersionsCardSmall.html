@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<div class="card mySmallCard shadow" th:fragment="versionsCardFragment (version)">
+  <div class="card-body small-padding" >
+    <div class="row">
+      <div class="col center-block text-center" th:classappend="${version.droneBuildStatus}">
+        <p class="small-padding">
+          <a th:text="${version.droneBuildEvent} + ' build #' +  ${version.droneBuildNumber} + ' -> ' + ${version.droneBuildStatus}" target="_blank"
+             th:href="${version.droneBuildLink}"></a>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+</html>

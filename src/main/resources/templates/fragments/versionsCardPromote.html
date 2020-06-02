@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<div class="mySmallCard" th:fragment="versionsCardPromoteFragment (repo, builds)">
+  <div class="row">
+    <div class="col center-block text-center">
+      <select class="form-control" th:id="${repo + '-build'}">
+        <option value="">build #</option>
+        <option th:each="build : ${builds}" th:value="${build.number}" th:text="${build.display}"></option>
+      </select>
+    </div>
+    <div class="col-2 center-block text-center">
+      <select class="form-control" th:id="${repo + '-env'}">
+        <option value="">env</option>
+        <option value="dev">dev</option>
+        <option value="staging">staging</option>
+        <option value="prod">prod</option>
+        <option value="perf">perf</option>
+      </select>
+    </div>
+    <div class="col-2 center-block text-center">
+      <input class="btn btn-primary" type="button" value="Promote"
+             th:data-repo="${repo}"
+             onclick="promoteBuild(this.getAttribute('data-repo'));"/>
+    </div>
+  </div>
+</div>
+
+</html>
