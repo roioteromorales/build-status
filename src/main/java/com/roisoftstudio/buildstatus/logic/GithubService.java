@@ -63,11 +63,10 @@ public class GithubService {
   }
 
   private VersionsDiff getVersionsFor(String repo, String base, String compare, String promotingEnvironment) {
-    GithubCompare githubCompare;
     try {
-      githubCompare = githubRepository.compareTags(githubOrganization, repo, compare, base, token);
-      BaseCommit baseCommit = githubCompare.getBase_commit();
-      DroneBuild droneBuild = droneService.getBuildForCommit(repo, baseCommit.getSha());
+      var githubCompare = githubRepository.compareTags(githubOrganization, repo, compare, base, token);
+      var baseCommit = githubCompare.getBase_commit();
+      var droneBuild = droneService.getBuildForCommit(repo, baseCommit.getSha());
       return VersionsDiff.builder()
           .repo(repo)
           .promotingEnvironment(promotingEnvironment)

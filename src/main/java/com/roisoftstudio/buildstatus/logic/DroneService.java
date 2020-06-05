@@ -8,6 +8,7 @@ import com.roisoftstudio.buildstatus.data.dto.DroneRepo;
 import com.roisoftstudio.buildstatus.data.dto.DroneShortBuild;
 import com.roisoftstudio.buildstatus.logic.exception.BuildNotFoundException;
 import java.util.Collection;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 import java.util.function.BiFunction;
@@ -64,6 +65,7 @@ public class DroneService {
         .flatMap(Collection::stream)
         .filter(droneBuild -> droneBuild.getAfter().equalsIgnoreCase(commit))
         .filter(droneBuild -> !droneBuild.getBefore().equalsIgnoreCase(commit))
+        .sorted(Comparator.comparing(droneBuild -> droneBuild.getNumber()))
         .findFirst()
         .orElseThrow(() -> new BuildNotFoundException(
             "Could not find the build for that commit, maybe is too old (only checking last 100 builds): " + commit));
