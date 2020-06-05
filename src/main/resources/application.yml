@@ -1,11 +1,11 @@
 drone:
-  token: LIHSKAvytiKdtZKQPdr7nSIU6uBxnGel
-  url: https://ci.build.loyalty.virgin.com
-  organization: virgin-loyalty
+  token: ${DRONE_TOKEN}
+  url: ${DRONE_SERVER}
+  organization: ${ORGANIZATION}
 github:
-  token: 0fdabaff09d4fd13800cad2a2a32f324ca796d5d
+  token: ${GITHUB_TOKEN}
   url: https://api.github.com/
-  organization: virgin-loyalty
+  organization: ${ORGANIZATION}
   repositoryPrefix: "red-"
 
 server:
@@ -17,5 +17,4 @@ blacklist: >
   red-scripts,
   red-metric-export-test,
   red-poc-fp-parser,
-  red-vaa-campaign-ingestion,
-  red-octopus-txn-processor
+  red-vaa-campaign-ingestion
