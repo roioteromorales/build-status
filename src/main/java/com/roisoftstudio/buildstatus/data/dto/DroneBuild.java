@@ -24,5 +24,7 @@ public class DroneBuild {
   private final String sender;
   private final Long started;
   private final Long finished;
+  // returned in promote builds only
+  private final Long deploy_to;
 
 }
