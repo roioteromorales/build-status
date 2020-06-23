@@ -26,6 +26,8 @@ public class DroneService {
   private String organization;
   @Value("${github.repositoryPrefix}")
   private String repoPrefix;
+  @Value("${github.dotcomPrefix}")
+  private String dotcomPrefix;
 
   public List<DroneBuild> getBuilds(String repository) {
     return droneRepository.getBuilds(organization, repository, token);
@@ -33,7 +35,7 @@ public class DroneService {
 
   public List<DroneRepo> getRepositories(String team) {
     return droneRepository.getRepos(token).stream()
-        .filter(droneRepo -> droneRepo.getName().contains(repoPrefix))
+        .filter(droneRepo -> droneRepo.getName().contains(repoPrefix) || droneRepo.getName().contains(dotcomPrefix))
         .filter(droneRepo -> repositoriesFilter.isInTeam(team, droneRepo))
         .filter(repositoriesFilter::isBlacklisted)
         .collect(toList());
