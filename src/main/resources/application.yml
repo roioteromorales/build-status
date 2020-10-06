@@ -6,7 +6,8 @@ github:
   token: ${GITHUB_TOKEN}
   url: https://api.github.com/
   organization: ${ORGANIZATION}
-  repositoryPrefix: "red-"
+  redPrefix: "red"
+  monitoringPrefix: "monitoring"
   dotcomPrefix: "dotcom"
 
 server:

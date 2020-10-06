@@ -29,6 +29,7 @@ public class RepositoriesFilter {
         "red-balances",
         "red-balance-management",
         "red-callback",
+        "red-campaign",
         "red-dummy",
         "red-eagle-eye-proxy",
         "red-member",
